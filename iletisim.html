@@ -43,6 +43,15 @@ a,button{-webkit-tap-highlight-color:transparent}
 .dz-tap-f:active{transform:scale(.96);opacity:.82}
 @media (hover: hover){.dz-tap-ol:hover{background:#FFFFFF!important;color:#0A0A0B!important;border-color:#FFFFFF!important}.dz-tap-od:hover{background:#0A0A0B!important;color:#FFFFFF!important;border-color:#0A0A0B!important}.dz-tap-f:hover{opacity:.86}}
 a:not([class]),a.dz-only-d,a.dz-only-m{transition:opacity .2s}
+/* iPhone/Android: site.js dokunulan öğeye data-pressed koyar; :active ile aynı görünüm */
+.dz-tap-ol[data-pressed]{background:#FFFFFF!important;color:#0A0A0B!important;border-color:#FFFFFF!important;transform:scale(.97)}
+.dz-tap-od[data-pressed]{background:#0A0A0B!important;color:#FFFFFF!important;border-color:#0A0A0B!important;transform:scale(.97)}
+.dz-tap-f[data-pressed]{transform:scale(.96);opacity:.82}
+.dz-card[data-pressed]{background:#0A0A0B!important;color:#FFFFFF!important;border-color:#0A0A0B!important;transform:scale(.985)}
+.dz-row[data-pressed]::after{width:100%}
+.dz-row[data-pressed] .dz-row-t{transform:translateX(12px)}
+.dz-flow[data-pressed]{color:#6A6A70}
+a:not([class])[data-pressed],a.dz-only-m[data-pressed]{opacity:.55}
 a:not([class]):active,a.dz-only-m:active{opacity:.55}
 @view-transition{navigation:auto}
 @keyframes dzOut{to{opacity:0}}

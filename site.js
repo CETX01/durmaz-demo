@@ -7,6 +7,25 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var INK = "#0A0A0B";
 
+  /* Dokunma tepkisi: iOS Safari :active'i dokunma dinleyicisi olmadan uygulamaz; ayrıca dokunma çok kısa sürer.
+     Dokunulan bağlantı/düğmeye data-pressed konur; başka sayfaya giden bağlantıda yeni sayfa açılana kadar kalır. */
+  var pressed = null;
+  var clearPressed = function () { $$("[data-pressed]").forEach(function (el) { el.removeAttribute("data-pressed"); }); pressed = null; };
+  document.addEventListener("touchstart", function (e) {
+    var el = e.target && e.target.closest ? e.target.closest("a, button") : null;
+    clearPressed(); if (!el) return;
+    pressed = el; el.setAttribute("data-pressed", "");
+  }, { passive: true });
+  document.addEventListener("touchmove", clearPressed, { passive: true });
+  document.addEventListener("touchcancel", clearPressed, { passive: true });
+  document.addEventListener("touchend", function () {
+    var el = pressed; if (!el) return;
+    var href = el.tagName === "A" ? el.getAttribute("href") || "" : "";
+    var leaves = href && href.charAt(0) !== "#" && !/^(mailto:|tel:)/.test(href) && el.target !== "_blank";
+    if (!leaves) setTimeout(function () { if (el) el.removeAttribute("data-pressed"); }, 180);
+  }, { passive: true });
+  window.addEventListener("pageshow", clearPressed);
+
   /* Mobil menü */
   var drawer = $("#dz-drawer"), menuBtn = $('[data-on="openMenu"]');
   function openMenu() {
