@@ -109,6 +109,17 @@
     });
   }
 
+  /* Rakamlar bölümü: küçük grafikler bölüm ekrana girince bir kez oynar */
+  if (!reduce && "IntersectionObserver" in window) {
+    $$(".dz-st").forEach(function (sec) {
+      sec.classList.add("dz-wait");
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { sec.classList.remove("dz-wait"); io.disconnect(); } });
+      }, { threshold: 0.35 });
+      io.observe(sec);
+    });
+  }
+
   /* Giriş videosu: bazı tarayıcılarda otomatik oynatmayı başlat */
   $$("video.dz-video").forEach(function (v) { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); });
 })();
