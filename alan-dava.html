@@ -20,6 +20,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .dz-row:hover .dz-row-t,.dz-row:focus-visible .dz-row-t{transform:translateX(12px)}
 .dz-row:hover .dz-row-d{color:#0A0A0B!important}
 .dz-tg{transition:background-color .25s}
+.dz-flow{color:#0A0A0B;text-decoration:none;transition:color .25s}
+@media (max-width: 759px){.dz-only-d{display:none!important}}
+@media (min-width: 760px){.dz-only-m{display:none!important}}
+.dz-only-m{display:inline-block}
+@media (min-width: 760px){.dz-flow{white-space:nowrap}}
+.dz-flow-sep{color:#C4C4C8;margin:0 .08em;font-weight:200}
+.dz-only-d:has(.dz-flow:hover) .dz-flow{color:#B4B4B9}
+.dz-only-d:has(.dz-flow:hover) .dz-flow:hover,.dz-flow:focus-visible{color:#0A0A0B}
+.dz-row-k::after{background:#FFFFFF}
+.dz-card{transition:background-color .3s,color .3s,border-color .3s}
+.dz-card:hover,.dz-card:focus-visible{background:#0A0A0B!important;color:#FFFFFF!important;border-color:#0A0A0B!important}
 @keyframes dzLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes dzPop{from{opacity:0;transform:scale(.35)}to{opacity:1;transform:none}}
 .dz-a-line{transform-origin:left center;animation:dzLine 1.3s cubic-bezier(.2,.7,.2,1) both}
