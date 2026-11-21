@@ -26,6 +26,18 @@
   }, { passive: true });
   window.addEventListener("pageshow", clearPressed);
 
+  /* Çalışma alanları (iki sütun): telefonda yana kaydırılan sayfalar ve noktalar */
+  $$(".dz-ar-pages").forEach(function (box) {
+    var pages = $$(".dz-ar-page", box), dots = $$(".dz-ar-dots [data-dot]", box.parentNode);
+    var sync = function () {
+      var w = pages[0].getBoundingClientRect().width || 1, i = Math.min(pages.length - 1, Math.round(box.scrollLeft / w));
+      pages.forEach(function (p, k) { if (k === i) p.setAttribute("data-active", ""); else p.removeAttribute("data-active"); });
+      dots.forEach(function (d, k) { if (k === i) d.setAttribute("data-on", ""); else d.removeAttribute("data-on"); });
+    };
+    box.addEventListener("scroll", function () { window.requestAnimationFrame(sync); }, { passive: true });
+    window.addEventListener("resize", sync);
+  });
+
   /* Mobil menü */
   var drawer = $("#dz-drawer"), menuBtn = $('[data-on="openMenu"]');
   function openMenu() {
