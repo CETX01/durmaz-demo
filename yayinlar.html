@@ -2,8 +2,8 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<title>Yayınlar</title>
 <meta name="robots" content="noindex, nofollow">
+<title>Yayınlar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&amp;display=swap">
 <style>
@@ -86,6 +86,8 @@ a:not([class]):active,a.dz-only-m:active{opacity:.55}
 .dz-ar-pages{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1 * clamp(20px,5vw,48px));padding:0 clamp(20px,5vw,48px);scroll-padding:0 clamp(20px,5vw,48px)}
 .dz-ar-pages::-webkit-scrollbar{display:none}
 .dz-ar-pages::after{content:"";flex:0 0 18%}
+.dz-ar[data-pressed] .dz-ar-ic{transition:opacity .18s ease-out,transform .25s cubic-bezier(.2,.7,.2,1)!important}
+.dz-ar[data-pressed] .dz-ar-t{transition:padding .22s ease-out!important}
 .dz-ar-page{flex:0 0 82%;scroll-snap-align:start;transition:opacity .35s}
 .dz-ar>svg{display:block}
 .dz-ar-t{padding:0}

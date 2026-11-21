@@ -26,6 +26,20 @@
   }, { passive: true });
   window.addEventListener("pageshow", clearPressed);
 
+  /* Çalışma alanları: telefonda dokununca ikon efekti oynasın, sayfa kısa bir beklemeyle açılsın */
+  var AR_DELAY = 300, lastTouch = 0;
+  document.addEventListener("touchstart", function () { lastTouch = Date.now(); }, { passive: true, capture: true });
+  $$("a.dz-ar").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (reduce || Date.now() - lastTouch > 1200) return;          // fare / klavye: hemen git
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      a.setAttribute("data-pressed", "");
+      var href = a.href;
+      setTimeout(function () { window.location.href = href; }, AR_DELAY);
+    });
+  });
+
   /* Çalışma alanları (iki sütun): telefonda yana kaydırılan sayfalar ve noktalar */
   $$(".dz-ar-pages").forEach(function (box) {
     var pages = $$(".dz-ar-page", box), dots = $$(".dz-ar-dots [data-dot]", box.parentNode);
